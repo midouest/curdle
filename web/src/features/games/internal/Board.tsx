@@ -15,11 +15,11 @@ export const Board = ({ results, guess, invalidGuess }: BoardProps) => {
     <div className="BoardContainer">
       <div className="Board">
         {results.map(({ id, letters }) => (
-          <Row key={id} letters={letters} />
+          <Row key={`result-${id}`} letters={letters} />
         ))}
         {guess && <Row letters={guess} invalid={invalidGuess} />}
         {Array.from({ length: placeholderRows }).map((_, index) => (
-          <Row key={index} letters={[]} />
+          <Row key={`empty-${index}`} letters={[]} />
         ))}
       </div>
     </div>

@@ -44,7 +44,7 @@ export const Row = ({ letters, invalid }: RowProps) => {
         }
         return (
           <div
-            key={index}
+            key={`${char}-${index}`}
             className={animationClass}
             style={{
               animationDelay: `${index * animationDelay}ms`,
@@ -55,7 +55,7 @@ export const Row = ({ letters, invalid }: RowProps) => {
         );
       })}
       {Array.from({ length: emptyCells }).map((_, index) => (
-        <Tile key={index} />
+        <Tile key={`empty-${index}`} />
       ))}
     </div>
   );
