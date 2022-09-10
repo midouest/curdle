@@ -60,3 +60,21 @@ npm start
 ```
 
 Open http://localhost:3000 to view the app
+
+## Common Development Tasks
+
+### Code Generation
+
+To regenerate the OpenAPI schema and Redux API slice, run the [codegen](/scripts/codegen.sh) script in the root of the repository:
+
+```bash
+./scripts/codegen.sh
+```
+
+### Reset Game Data
+
+To clear all game data and reload the word database, run the [reset](/scripts/reset.sh) script in the root of the repository:
+
+```bash
+./scripts/reset.sh
+```
