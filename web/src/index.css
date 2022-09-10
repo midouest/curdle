@@ -1,0 +1,346 @@
+html,
+body,
+.RootContainer {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-background);
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden;
+}
+
+:root {
+  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  --color-tone-1: #000000;
+  --color-tone-2: #787c7e;
+  --color-tone-3: #878a8c;
+  --color-tone-4: #d3d6da;
+  --color-tone-5: #edeff1;
+  --color-tone-6: #f6f7f8;
+  --color-tone-7: #ffffff;
+  --color-tone-8: #121212;
+  --color-tone-9: #dfdfdf;
+  --color-tone-10: #000000;
+  --color-tone-11: #787c7e;
+  --color-tone-12: #363636;
+  --green: #6aaa64;
+  --yellow: #c9b458;
+  --lightGray: #d3d6da;
+  --gray: #86888a;
+  --gray-2: #dcdcdc;
+  --gray-3: #dfdfdf;
+  --darkGray: #939598;
+  --white: #fff;
+  --black: #212121;
+  --black-2: #121212;
+  --black-3: #363636;
+  --black-4: #cfcfcf;
+  --orange: #f5793a;
+  --blue: #85c0f9;
+  --header-padding-x: 16px;
+  --keyboard-height: 200px;
+  --game-max-width: 500px;
+  --toast-z-index: 1000;
+  --header-height: 65px;
+}
+
+:root {
+  --color-background: var(--white);
+  --color-present: var(--yellow);
+  --color-correct: var(--green);
+  --color-absent: var(--color-tone-2);
+  --tile-text-color: var(--color-tone-7);
+  --key-text-color: var(--color-tone-1);
+  --key-evaluated-text-color: var(--color-tone-7);
+  --key-bg: var(--color-tone-4);
+  --key-bg-present: var(--color-present);
+  --key-bg-correct: var(--color-correct);
+  --key-bg-absent: var(--color-absent);
+  --modal-content-bg: var(--color-tone-7);
+}
+
+.AppHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  padding: 0px var(--header-padding-x);
+  height: var(--header-height);
+  color: var(--color-tone-1);
+  border-bottom: 1px solid var(--color-tone-4);
+}
+
+.Title {
+  flex-grow: 2;
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: 0.01em;
+  text-align: left;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  position: relative;
+  user-select: none;
+}
+
+.Link {
+  text-decoration: none;
+  color: var(--color-tone-1);
+  font-weight: 700;
+  user-select: none;
+}
+
+.App {
+  width: 100%;
+  max-width: var(--game-max-width);
+  margin: 0 auto;
+  height: calc(100% - var(--header-height));
+  display: flex;
+  flex-direction: column;
+}
+
+.BoardContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.Board {
+  width: 350px;
+  height: 420px;
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  grid-gap: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.Row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 5px;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+.Row.shake {
+  animation: shake 600ms;
+}
+
+@keyframes bounce {
+  0%, 20% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-30px);
+  }
+
+  50% {
+    transform: translateY(5px);
+  }
+
+  60% {
+    transform: translateY(-15px);
+  }
+
+  80% {
+    transform: translateY(2px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.Row .bounce {
+  animation: bounce 1000ms;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateX(0);
+  }
+
+  50% {
+    transform: rotateX(-90deg);
+  }
+
+  100% {
+    transform: rotateX(0);
+  }
+}
+
+.Row .flip {
+  animation: flip 500ms ease-in-out;
+}
+
+.Tile {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  line-height: 2rem;
+  font-weight: bold;
+  vertical-align: middle;
+  box-sizing: border-box;
+  color: var(--tile-text-color);
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.Tile::before {
+  content: "";
+  display: inline-block;
+  padding-bottom: 100%;
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  40% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+.Tile.pop {
+  animation: pop 100ms;
+}
+
+.Tile.empty {
+  border: 2px solid var(--color-tone-4);
+}
+
+.Tile.tbd {
+  background-color: var(--color-tone-7);
+  border: 2px solid var(--color-tone-3);
+  color: var(--color-tone-1);
+}
+
+.Tile.absent {
+  background-color: var(--color-absent);
+}
+
+.Tile.present {
+  background-color: var(--color-present);
+}
+
+.Tile.correct {
+  background-color: var(--color-correct);
+}
+
+.Keyboard {
+  height: var(--keyboard-height);
+  margin: 0 8px;
+  user-select: none;
+}
+
+.KeyboardRow {
+  display: flex;
+  width: 100%;
+  margin: 0 auto 8px;
+  touch-action: manipulation;
+}
+
+.KeySpacer {
+  flex: 0.5;
+}
+
+.Key {
+  font-family: inherit;
+  font-weight: bold;
+  border: 0;
+  padding: 0;
+  margin: 0 6px 0 0;
+  height: 58px;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+  background-color: var(--key-bg);
+  color: var(--key-text-color);
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.Key.control {
+  flex: 1.5;
+  font-size: 12px;
+}
+
+.Key.absent {
+  background-color: var(--key-bg-absent);
+  color: var(--key-evaluated-text-color);
+}
+
+.Key.present {
+  background-color: var(--key-bg-present);
+  color: var(--key-evaluated-text-color);
+}
+
+.Key.correct {
+  background-color: var(--key-bg-correct);
+  color: var(--key-evaluated-text-color);
+}
+
+.Icon {
+  height: 24px;
+  width: 24px;
+}
+
+.ToastContainer {
+  position: absolute;
+  top: 45px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  pointer-events: none;
+  width: fit-content;
+}
+
+.Toast {
+  position: relative;
+  margin: 16px;
+  background-color: var(--color-tone-8);
+  color: var(--color-tone-7);
+  padding: 13px;
+  border: none;
+  border-radius: 4px;
+  opacity: 1;
+  transition: opacity 300ms cubic-bezier(0.645, 0.045, 0.355, 1);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.Toast.fade {
+  opacity: 0;
+}
