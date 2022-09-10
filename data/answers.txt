@@ -1,10 +1,12 @@
 board
 brick
+bries
 colby
 comte
 cream
 curds
 dairy
+fetas
 gouda
 grana
 grate

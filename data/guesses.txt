@@ -8,6 +8,7 @@ apple
 aroma
 award
 bacon
+bagel
 baked
 balls
 basin
@@ -18,6 +19,7 @@ black
 blend
 block
 bloom
+blues
 braid
 brand
 bread
@@ -25,6 +27,7 @@ break
 brine
 briny
 brown
+cakes
 camel
 caves
 cheap
@@ -51,6 +54,7 @@ cured
 delis
 dense
 diets
+dough
 drain
 dress
 dried
@@ -101,6 +105,7 @@ iraqi
 irish
 italy
 ivory
+hogie
 japan
 jelly
 juice
@@ -146,9 +151,11 @@ parts
 party
 paste
 pecan
+penne
 pesto
 photo
 piece
+pitas
 plain
 plate
 poppy
