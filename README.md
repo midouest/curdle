@@ -21,7 +21,7 @@ cd curdle
 ### Install Python dependencies
 
 ```bash
-pipenv install
+pipenv install --dev
 pipenv shell
 ```
 
