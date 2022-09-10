@@ -1,8 +1,10 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import { gameApi } from "../features/games/gameApi";
+import { revealReducer } from "../features/games/internal/revealSlice";
 
 export const store = configureStore({
   reducer: {
+    reveal: revealReducer,
     [gameApi.reducerPath]: gameApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

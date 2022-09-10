@@ -3,6 +3,8 @@ import { Letter } from "../gameApi";
 import { Tile } from "./Tile";
 import { useMemo, useState } from "react";
 import { useMount } from "./useMount";
+import { useAppDispatch } from "../../../app/hooks";
+import { beginReveal, endReveal } from "./revealSlice";
 
 const animationDelay = 100;
 const animationHalfTime = 250;
@@ -14,6 +16,7 @@ interface RowProps {
 
 export const Row = ({ letters, invalid }: RowProps) => {
   const emptyCells = maxLetters - letters.length;
+  const dispatch = useAppDispatch();
   const guessState = useMemo(() => getGuessState(letters), [letters]);
   const [revealed, setRevealed] = useState(0);
   const [completed, setCompleted] = useState(0);
@@ -24,13 +27,28 @@ export const Row = ({ letters, invalid }: RowProps) => {
       return;
     }
 
-    for (let i = 0; i < maxLetters; i++) {
-      const ms = i * animationDelay + animationHalfTime;
-      wait(ms)
-        .then(() => setRevealed(i + 1))
-        .then(() => wait(animationHalfTime))
-        .then(() => setCompleted(i + 1));
-    }
+    const animateLetter = async (index: number) => {
+      const ms = index * animationDelay + animationHalfTime;
+      const revealIndex = index + 1;
+      await wait(ms);
+      setRevealed(revealIndex);
+      await wait(animationHalfTime);
+      setCompleted(revealIndex);
+    };
+
+    const animate = async () => {
+      dispatch(beginReveal());
+
+      const promises = [];
+      for (let i = 0; i < maxLetters; i++) {
+        promises.push(animateLetter(i));
+      }
+
+      await Promise.all(promises);
+      dispatch(endReveal());
+    };
+
+    animate();
   });
 
   return (

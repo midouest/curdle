@@ -5,6 +5,8 @@ import { Keyboard } from "./Keyboard";
 import { Toast } from "./Toast";
 import { Cheesefetti } from "./Cheesefetti";
 import { maxLetters } from "./constants";
+import { useAppSelector } from "../../../app/hooks";
+import { selectRevealComplete } from "./revealSelectors";
 
 const winMessages = [
   "Genius",
@@ -30,6 +32,8 @@ export const GameForm = ({
   onChange,
   onSubmit,
 }: GameFormProps) => {
+  const revealComplete = useAppSelector(selectRevealComplete);
+
   const guessLetters: Partial<Letter>[] = useMemo(
     () => Array.from(guess).map((char) => ({ char })),
     [guess]
@@ -74,9 +78,9 @@ export const GameForm = ({
         onEnterPress={onSubmit}
       />
 
-      {lost && <Toast>{game.answer!.toUpperCase()}</Toast>}
+      {lost && revealComplete && <Toast>{game.answer!.toUpperCase()}</Toast>}
 
-      {won && (
+      {won && revealComplete && (
         <>
           <Toast fadeOut>{winMessages[game.results.length - 1]}</Toast>
           <Cheesefetti />
