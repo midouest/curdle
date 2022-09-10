@@ -2,6 +2,8 @@
 
 A cheesy word game built to demonstrate Django REST Framework and Redux code generation
 
+![](/images/screenshot.png)
+
 ## Requirements
 
 - Python 3.10
