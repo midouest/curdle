@@ -95,6 +95,7 @@ happy
 heavy
 herbs
 herby
+hogie
 holes
 honey
 house
@@ -105,7 +106,6 @@ iraqi
 irish
 italy
 ivory
-hogie
 japan
 jelly
 juice
