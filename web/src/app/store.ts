@@ -1,14 +1,11 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import { gameApi } from "../features/games/gameApi";
 import { revealReducer } from "../features/games/internal";
 
 export const store = configureStore({
   reducer: {
     reveal: revealReducer,
-    [gameApi.reducerPath]: gameApi.reducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(gameApi.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
 
 export type AppDispatch = typeof store.dispatch;

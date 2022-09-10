@@ -1,9 +1,6 @@
 import { useCallback, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  useApiGamesRetrieveQuery,
-  useApiGuessesCreateMutation,
-} from "./gameApi";
+import { useCreateGuess, useQueryGame } from "./gameStub";
 import {
   GameForm,
   InvalidWord,
@@ -19,9 +16,8 @@ export const PlayGame = () => {
   const { id: idParam } = useParams();
   const gameId = parseInt(idParam!);
 
-  const { data: game } = useApiGamesRetrieveQuery(gameId);
-  const [createGuess, { isError: invalidGuess }] =
-    useApiGuessesCreateMutation();
+  const game = useQueryGame(gameId);
+  const [createGuess, invalidGuess] = useCreateGuess();
 
   const handleChange = useCallback(
     (word: string) => {
@@ -37,14 +33,10 @@ export const PlayGame = () => {
       return;
     }
 
-    createGuess({
-      game: gameId,
-      word: guess,
-    })
-      .unwrap()
+    createGuess(guess)
       .then(() => setGuess(""))
       .catch();
-  }, [createGuess, gameId, guess]);
+  }, [createGuess, guess]);
 
   if (!game) {
     return <Loading />;

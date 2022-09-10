@@ -1,14 +1,9 @@
 import { Navigate } from "react-router-dom";
-import { useApiGamesCreateMutation } from "./gameApi";
-import { Loading, useMount } from "./internal";
+import { useCreateGame } from "./gameStub";
+import { Loading } from "./internal";
 
 export const NewGame = () => {
-  const [createGame, { data: game }] = useApiGamesCreateMutation();
-
-  useMount(() => {
-    const request = createGame();
-    return () => request.abort();
-  });
+  const game = useCreateGame();
 
   if (!game) {
     return <Loading />;

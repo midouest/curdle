@@ -46,9 +46,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "@rtk-query/codegen-openapi": "^1.0.0",
-    "ts-node": "^10.9.1"
-  },
   "proxy": "http://127.0.0.1:8000"
 }
