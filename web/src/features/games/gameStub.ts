@@ -14,20 +14,20 @@ const gameStub: Game = {
           state: "absent",
         },
         {
-          char: "o",
-          state: "absent",
-        },
-        {
           char: "a",
           state: "present",
         },
         {
-          char: "r",
+          char: "u",
+          state: "absent",
+        },
+        {
+          char: "c",
           state: "absent",
         },
         {
           char: "e",
-          state: "absent",
+          state: "correct",
         },
       ],
     },
@@ -35,23 +35,23 @@ const gameStub: Game = {
       id: 2,
       letters: [
         {
-          char: "p",
-          state: "absent",
+          char: "g",
+          state: "correct",
+        },
+        {
+          char: "r",
+          state: "correct",
         },
         {
           char: "a",
           state: "correct",
         },
         {
-          char: "i",
-          state: "present",
+          char: "z",
+          state: "absent",
         },
         {
-          char: "n",
-          state: "correct",
-        },
-        {
-          char: "t",
+          char: "e",
           state: "correct",
         },
       ],
@@ -61,22 +61,22 @@ const gameStub: Game = {
       letters: [
         {
           char: "g",
-          state: "absent",
+          state: "correct",
+        },
+        {
+          char: "r",
+          state: "correct",
         },
         {
           char: "a",
           state: "correct",
         },
         {
-          char: "u",
-          state: "correct",
+          char: "d",
+          state: "absent",
         },
         {
-          char: "n",
-          state: "correct",
-        },
-        {
-          char: "t",
+          char: "e",
           state: "correct",
         },
       ],
@@ -85,16 +85,14 @@ const gameStub: Game = {
   answer: null,
   alphabet: {
     a: "correct",
-    e: "absent",
-    g: "absent",
-    i: "absent",
-    n: "correct",
-    o: "absent",
-    p: "absent",
-    r: "absent",
+    c: "absent",
+    d: "absent",
+    e: "correct",
+    g: "correct",
+    r: "correct",
     s: "absent",
-    t: "correct",
-    u: "correct",
+    u: "absent",
+    z: "absent",
   },
 };
 
