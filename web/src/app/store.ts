@@ -1,6 +1,6 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import { gameApi } from "../features/games/gameApi";
-import { revealReducer } from "../features/games/internal/revealSlice";
+import { revealReducer } from "../features/games/internal";
 
 export const store = configureStore({
   reducer: {

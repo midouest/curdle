@@ -4,8 +4,13 @@ import {
   useApiGamesRetrieveQuery,
   useApiGuessesCreateMutation,
 } from "./gameApi";
-import { GameForm, InvalidWord, Loading, NotEnoughLetters } from "./internal";
-import { maxLetters } from "./internal/constants";
+import {
+  GameForm,
+  InvalidWord,
+  Loading,
+  maxLetters,
+  NotEnoughLetters,
+} from "./internal";
 
 export const PlayGame = () => {
   const [guess, setGuess] = useState("");
